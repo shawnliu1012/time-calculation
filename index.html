@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>加班時間</title>
+</head>
+<body>
+    <h1>加班時間</h1>
+    <form id="timeForm">
+        <label for="time1">輸入第一個時間 (格式: HH:MM):</label>
+        <input type="text" id="time1" name="time1" placeholder="HH:MM">
+        <br>
+        <label for="time2">輸入第二個時間 (格式: HH:MM):</label>
+        <input type="text" id="time2" name="time2" placeholder="HH:MM">       
+        <br>
+        <input type="button" value="計算" onclick="calculateDifference()">
+    </form>
+    <p id="result"></p>
+
+    <script>
+        function calculateDifference() {
+            const time1Str = document.getElementById('time1').value;
+            const time2Str = document.getElementById('time2').value;
+
+            const time1 = new Date(`1970-01-01 ${time1Str}:00`);
+            const time2 = new Date(`1970-01-01 ${time2Str}:00`);
+            
+            const delta = new Date(time2 - time1);
+            const hours = delta.getUTCHours();
+            const minutes = delta.getUTCMinutes();
+
+            const difference = `${hours}小時 ${minutes}分鐘`;
+            document.getElementById('result').innerText = `加班時間為: ${difference}`;
+        }
+    </script>
+</body>
+</html>
